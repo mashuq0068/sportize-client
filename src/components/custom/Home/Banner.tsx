@@ -54,11 +54,11 @@ const Banner = () => {
               </p>
               <p className="font-semibold text-xl mt-[5vh] md:pl-16 lg:pl-24">{slide?.name}</p>
             </div>
-            <div className="max-h-[500px] flex-1   lg:w-[50%] overflow-hidden">
+            <div className="max-h-[400px] flex-1   lg:w-[50%] overflow-hidden">
               <img
                 src={slide?.image}
                 alt={`Slide ${index + 1}`}
-                className="w-full  flex-1 lg:h-[500px] h-[200px] md:h-[250px]  object-contain"
+                className="w-full  flex-1 lg:h-[400px] h-[200px] md:h-[250px]  object-contain"
               />
             </div>
           </div>

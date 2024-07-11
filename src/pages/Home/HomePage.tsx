@@ -1,4 +1,5 @@
 // import About from "@/components/custom/AboutUs/About";
+import FeaturedProducts from "@/components/custom/FeaturedProdutcs/FeaturedProducts";
 import Banner from "@/components/custom/Home/Banner";
 import Discount from "@/components/custom/Home/Discount";
 import Explore from "@/components/custom/Home/Explore";
@@ -17,6 +18,9 @@ const HomePage = () => {
 
       <section>
         {/* <About /> */}
+      </section>
+      <section>
+        <FeaturedProducts/>
       </section>
     </section>
   );

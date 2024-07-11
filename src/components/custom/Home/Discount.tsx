@@ -1,4 +1,4 @@
-import gift from "/images/discount.jpg";
+import gift from "/images/gift.png";
 import discount from "/images/discount.jpg";
 
 const Discount = () => {
