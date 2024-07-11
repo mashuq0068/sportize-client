@@ -16,7 +16,7 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li className=" hover:bg-white">
-        <NavLink className=" hover:bg-white" to="/cart">
+        <NavLink className=" hover:bg-white" to="/about-us">
           About us
         </NavLink>
       </li>

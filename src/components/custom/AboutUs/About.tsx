@@ -32,8 +32,8 @@ const About = () => {
           alt="sporting-goods-image"
         />
       </div> */}
-      <div className="lg:flex items-center gap-[5%]">
-        <div className="flex-1 border rounded-lg border-black h-full flex justify-center items-center">
+      <div className="lg:flex mt-[30px] items-center gap-[5%]">
+        <div className="flex-1  rounded-lg border-black h-full flex justify-center items-center">
           {/* <img
             src="https://www.shift4shop.com/2015/images/sell-online/digital-downloads/sporting-goods.png"
             alt="sporting-goods-image"

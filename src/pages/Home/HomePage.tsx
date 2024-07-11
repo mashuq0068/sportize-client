@@ -1,12 +1,15 @@
 // import About from "@/components/custom/AboutUs/About";
-import FeaturedProducts from "@/components/custom/FeaturedProdutcs/FeaturedProducts";
+
 import Banner from "@/components/custom/Home/Banner";
+import Categories from "@/components/custom/Home/Categories";
+import ContactUs from "@/components/custom/Home/ContactUs";
 import Discount from "@/components/custom/Home/Discount";
 import Explore from "@/components/custom/Home/Explore";
+import FeaturedProducts from "@/components/custom/Home/FeaturedProducts";
 
 const HomePage = () => {
   return (
-    <section className=" space-y-36">
+    <section className=" space-y-12 lg:space-y-24">
       {/* banner */}
       <section className="">
         <div className="lg:flex lg:gap-[5%] lg:flex-row-reverse flex-col-reverse items-center justify-between">
@@ -16,11 +19,15 @@ const HomePage = () => {
         <Explore />
       </section>
 
+      <section>{/* <About /> */}</section>
       <section>
-        {/* <About /> */}
+        <FeaturedProducts />
       </section>
       <section>
-        <FeaturedProducts/>
+        <Categories />
+      </section>
+      <section>
+        <ContactUs />
       </section>
     </section>
   );
