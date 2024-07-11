@@ -1,5 +1,5 @@
-import gift from "../../../../public/images/gift.png";
-import discount from "../../../../public/images/discount.jpg";
+import gift from "/images/discount.jpg";
+import discount from "/images/discount.jpg";
 
 const Discount = () => {
   return (
