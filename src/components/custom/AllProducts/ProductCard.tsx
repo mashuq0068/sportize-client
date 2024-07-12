@@ -1,51 +1,69 @@
 import { GoArrowRight } from "react-icons/go";
 import Rating from "react-rating";
+import { Link } from "react-router-dom";
 
-interface IProduct {
+export interface IProduct {
+  _id: string;
+  name: string;
+  category: string;
+  brand: string;
+  price: number;
+  rating: number;
+  stockQuantity: number;
   image: string;
-  des: string;
+  description: string;
 }
 interface ProductProps {
   product: IProduct;
 }
 const ProductCard = ({ product }: ProductProps) => {
+  const {
+    _id,
+    name,
+    brand,
+    price,
+    category,
+    rating,
+    stockQuantity,
+    image,
+    description,
+  } = product;
   return (
     <div className="relative group ">
       {/* Card container to ensure correct z-index stacking */}
       <div className="relative p-5   z-10">
         {/* Overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-70 opacity-0 group-hover:opacity-100 transform translate-y-full group-hover:translate-y-0 transition-all duration-500 flex items-center justify-center z-20">
-          <button className="border flex gap-2 items-center border-white text-white  px-4 py-2 rounded">
+          <Link
+            to={`/single-product/${_id}`}
+            className="border flex gap-2 items-center border-white text-white  px-4 py-2 rounded"
+          >
             View Details <GoArrowRight />
-          </button>
+          </Link>
         </div>
         {/* Content */}
         <div className="relative">
           {/* image */}
           <div className="h-[200px] relative overflow-hidden">
-            <img
-              src={product?.image}
-              className="h-full w-full object-contain"
-              alt=""
-            />
+            <img src={image} className="h-full w-full object-contain" alt="" />
             {/* category */}
             <p className="bg-yellow-200 px-2 py-1 text-black absolute bottom-0 right-0">
-              Football
+              {category}
             </p>
           </div>
           {/* =name  */}
           <div className="flex mt-2 mb-2 justify-between">
-            <p>Golf-set</p>
+            <p>{name}</p>
           </div>
           {/* des */}
           <div className="mb-2">
-            <p>{product?.des}</p>
+            <p>{description?.slice(0, 69)}</p>
           </div>
           {/* rating */}
           <div className="mb-2">
             {/* @ts-expect-error there is a version miss-match in the source */}
             <Rating
-              initialRating={4}
+              initialRating={rating}
               readonly
               emptySymbol={
                 <svg
@@ -78,15 +96,15 @@ const ProductCard = ({ product }: ProductProps) => {
           </div>
           {/* available */}
           <div className="bg-slate-800 px-2 py-1 w-max text-white">
-            <p>35 Available</p>
+            <p>{stockQuantity} Available</p>
           </div>
           {/* price */}
           <div className="bg-black px-2 py-1 text-white absolute top-0 w-max">
-            <p>$35</p>
+            <p>${price}</p>
           </div>
           {/* brand */}
           <div className="bg-slate-400 px-2 py-1 text-white absolute bottom-0 right-0 w-max">
-            <p>Puma</p>
+            <p>{brand}</p>
           </div>
         </div>
       </div>

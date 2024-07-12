@@ -1,3 +1,5 @@
+import { Link, NavLink } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="text-gray-600 body-font">
@@ -10,7 +12,7 @@ const Footer = () => {
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
-               strokeWidth="2"
+              strokeWidth="2"
               className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
               viewBox="0 0 24 24"
             >
@@ -19,83 +21,163 @@ const Footer = () => {
             <span className="ml-3 text-xl">Footer</span>
           </a>
           <p className="mt-2 text-sm text-gray-500">
-            Air plant banjo lyft occupy retro adaptogen indego
+            Get you sport goods today. Start now as soon as possible !
           </p>
         </div>
         <div className="flex-grow flex flex-wrap md:pr-20 -mb-10 md:text-left text-center order-first">
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-              CATEGORIES
+            <h2 className="title-font font-medium text-gray-900 tracking-widest uppercase text-sm mb-3">
+              Home
             </h2>
             <nav className="list-none mb-10">
-              <li>
-                <a className="text-gray-600 hover:text-gray-800">First Link</a>
+            <li>
+                <Link
+                  to="/"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Info
+                </Link>
               </li>
-              <li>
-                <a className="text-gray-600 hover:text-gray-800">Second Link</a>
+            <li>
+                <Link
+                  to="/"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Featured
+                </Link>
               </li>
-              <li>
-                <a className="text-gray-600 hover:text-gray-800">Third Link</a>
+            <li>
+                <Link
+                  to="/"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Contact
+                </Link>
               </li>
-              <li>
-                <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
+            <li>
+                <Link
+                  to="/"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Discount
+                </Link>
               </li>
             </nav>
           </div>
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-              CATEGORIES
+            <h2 className="title-font font-medium text-gray-900 tracking-widest uppercase text-sm mb-3">
+              All Products
             </h2>
             <nav className="list-none mb-10">
-              <li>
-                <a className="text-gray-600 hover:text-gray-800">First Link</a>
+            <li>
+                <Link
+                  to="/all-products"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Categories
+                </Link>
               </li>
-              <li>
-                <a className="text-gray-600 hover:text-gray-800">Second Link</a>
+            <li>
+                <Link
+                  to="/all-products"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Products
+                </Link>
               </li>
-              <li>
-                <a className="text-gray-600 hover:text-gray-800">Third Link</a>
+            <li>
+                <Link
+                  to="/all-products"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Details
+                </Link>
               </li>
-              <li>
-                <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
+            <li>
+                <Link
+                  to="/all-products"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Search Products
+                </Link>
               </li>
             </nav>
           </div>
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-              CATEGORIES
+            <h2 className="title-font font-medium text-gray-900 tracking-widest uppercase text-sm mb-3">
+              Manage Products
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <a className="text-gray-600 hover:text-gray-800">First Link</a>
+                <Link
+                  to="/manage-products"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Manage
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Second Link</a>
+                <Link
+                  to="/manage-products"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Delete
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Third Link</a>
+                <Link
+                  to="/manage-products"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Add New
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
+                <Link
+                  to="/manage-products"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Modify
+                </Link>
               </li>
             </nav>
           </div>
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-            <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
-              CATEGORIES
+            <h2 className="title-font font-medium text-gray-900 tracking-widest uppercase text-sm mb-3">
+              About us
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <a className="text-gray-600 hover:text-gray-800">First Link</a>
+                <Link
+                  to="/about-us"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  About
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Second Link</a>
+                <Link
+                  to="/about-us"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Contact
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Third Link</a>
+                <Link
+                  to="/about-us"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Information
+                </Link>
               </li>
               <li>
-                <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
+                <Link
+                  to="/about-us"
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Location
+                </Link>
               </li>
             </nav>
           </div>
@@ -120,7 +202,7 @@ const Footer = () => {
                 fill="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                 strokeWidth="2"
+                strokeWidth="2"
                 className="w-5 h-5"
                 viewBox="0 0 24 24"
               >
@@ -132,7 +214,7 @@ const Footer = () => {
                 fill="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                 strokeWidth="2"
+                strokeWidth="2"
                 className="w-5 h-5"
                 viewBox="0 0 24 24"
               >
@@ -145,7 +227,7 @@ const Footer = () => {
                 stroke="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                 strokeWidth="2"
+                strokeWidth="2"
                 className="w-5 h-5"
                 viewBox="0 0 24 24"
               >
@@ -159,7 +241,7 @@ const Footer = () => {
                 stroke="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                 strokeWidth="0"
+                strokeWidth="0"
                 className="w-5 h-5"
                 viewBox="0 0 24 24"
               >

@@ -1,12 +1,22 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import baseApi from "@/redux/api/baseApi";
 
 const productsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => ({
-        url: "/products",
-        method: "GET",
-      }),
+      query: (queryParams) => {
+        return {
+          url: `/products/`,
+          method: "GET",
+          params: {
+            ...queryParams,
+          },
+        };
+      },
+      providesTags: ["product"],
+    }),
+    getSingleProduct: builder.query({
+      query: (id) => ({ url: `products/${id}` }),
       providesTags: ["product"],
     }),
     createProduct: builder.mutation({
@@ -40,6 +50,7 @@ const productsApi = baseApi.injectEndpoints({
 
 export const {
   useGetProductsQuery,
+  useGetSingleProductQuery,
   useCreateProductMutation,
   useDeleteProductMutation,
   useUpdateProductMutation,

@@ -1,58 +1,106 @@
+/* eslint-disable no-unsafe-optional-chaining */
 import { BsCart3 } from "react-icons/bs";
 import Rating from "react-rating";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
+
+import { useParams } from "react-router-dom";
+import { useGetSingleProductQuery } from "@/redux/features/products/products.api";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import toast from "react-hot-toast";
+import { addProduct } from "@/redux/features/cart/cart.slice";
 
 const SingleProduct = () => {
+  const dispatch = useAppDispatch();
+  const cartProducts = useAppSelector((state) => state.cart);
+  const params = useParams();
+  const id = params?.id;
+  const { data, isLoading, isFetching } = useGetSingleProductQuery(id);
+  if (!data || isLoading || isFetching) {
+    return (
+      <span className="loading relative left-[50%] loading-spinner loading-lg text-center my-16"></span>
+    );
+  }
+  const {
+    _id,
+    name,
+    brand,
+    price,
+    category,
+    rating,
+    stockQuantity,
+    image,
+    description,
+  } = data?.data;
+  const handleAddToCart = async () => {
+    // is product already added in cart
+    const cartData = {
+      _id,
+      name,
+      price,
+      quantity: 1,
+    };
+    const isProductAlreadyExist = cartProducts.find(
+      (product) => product?._id === cartData?._id
+    );
+    if (isProductAlreadyExist) {
+      return toast.error("This product already added into cart", {
+        duration: 3000,
+        position: "top-center",
+      });
+    }
+
+    dispatch(addProduct(cartData));
+    toast.success("Product Added to cart")
+  };
+
   return (
-    <div style={{}} className=" px-[3%] h-[100vh]   md:px-[10%]  ">
+    <div style={{}} className="">
       {/* details */}
-      <div className=" flex lg:gap-12 justify-between">
+      <div className=" flex lg:flex-row flex-col lg:gap-12 justify-between">
         {/* left */}
         <div className="lg:w-[60%] ">
-          <div className="mt-36 mb-12 max-w-[200px] rounded-lg max-h-[200px] overflow-hidden">
-            <img
-              className="w-[100%] h-[100%] object-cover"
-              src={
-                "https://tse3.mm.bing.net/th?id=OIP.vYMFtv1yl6QVXGnTUY4DkAAAAA&pid=Api&P=0&h=220"
-              }
-              alt=""
-            />
+          <div className="lg:mt-36 mt-[30px] mb-12 max-w-[200px] rounded-lg max-h-[200px] overflow-hidden">
+            <PhotoProvider>
+              <PhotoView src={image}>
+                <img
+                  className=" cursor-pointer max-h-[400px]"
+                  src={image}
+                  alt=""
+                />
+              </PhotoView>
+            </PhotoProvider>
           </div>
-          <div>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Aspernatur, omnis veniam unde provident dignissimos facere fugit
-            magnam ex expedita nulla veritatis hic, harum molestias quod quis
-            nesciunt quasi accusamus dolor similique repellat cupiditate amet
-            vitae placeat optio? Praesentium, quis? Pariatur natus dicta atque
-            quam fuga corporis ducimus odit praesentium suscipit ad? Quis error
-            praesentium commodi. Ab atque molestiae saepe ex fugit facilis
-            porro, mollitia totam sint distinctio, rerum quia illum inventore
-            deserunt modi. Minima, aut. Blanditiis error, suscipit esse
-            consequuntur architecto dolores consequatur, necessitatibus animi
-            quia repellendus ex beatae praesentium at similique ad minima
-            officiis mollitia nam voluptas ullam accusamus!
-          </div>
+          <div>{description}</div>
         </div>
         {/* right */}
-        <div className="text-lg relative flex-1 mt-[100px] h-max pt-[2%]   px-[2%]  space-y-3 drop-shadow-xl rounded-xl shadow-xl  ">
-          <p className="spacing text-gray-600">
-            <span className="lg:font-bold text-black">Name</span> : {}
+        <div className="text-lg  flex-1 mt-[30px] lg:mt-[100px] lg:h-max pt-[2%]   px-[2%]  space-y-3 drop-shadow-xl rounded-xl shadow-xl  ">
+          <p className="spacing flex items-center gap-2 capitalize text-gray-600">
+            <span className="lg:font-medium  text-black">Name</span> : {name}
           </p>
-          <p className="spacing text-gray-600 ">
-            <span className="lg:font-bold text-black">Category</span> : {}
+          <p className="spacing flex items-center gap-2 capitalize text-gray-600 ">
+            <span className="lg:font-medium  text-black">Category</span> :
+            {category}
           </p>
-
-          <p className="spacing text-gray-600">
-            <span className="lg:font-bold text-black">Brand</span>: {}
-          </p>
-          <p className="spacing text-gray-600">
-            <span className="lg:font-bold text-black">Stock</span>: {}
+          <p className="spacing flex items-center gap-2 capitalize text-gray-600 ">
+            <span className="lg:font-medium  text-black">Price</span> : ${price}
           </p>
 
-          <p className="spacing text-gray-600">
-            <span className="lg:font-bold text-black">Rating</span>:
+          <p className="spacing flex items-center gap-2 capitalize text-gray-600">
+            <span className="lg:font-medium  text-black">Brand</span>:{brand}
+          </p>
+          <div className="spacing flex items-center gap-2 capitalize text-gray-600">
+            <span className="lg:font-medium  text-black">Stock</span>:
+            <div className="bg-slate-800 rounded-md px-2 py-1 w-max text-white">
+              <p>{stockQuantity} Available</p>
+            </div>
+          </div>
+
+          <div className="spacing flex items-center gap-2 text-gray-600">
+            <span className="lg:font-medium  text-black">Rating</span>:
             {/* @ts-expect-error there is a version miss-match in the source */}
             <Rating
-              initialRating={4}
+              initialRating={rating}
               readonly
               emptySymbol={
                 <svg
@@ -82,8 +130,11 @@ const SingleProduct = () => {
                 </svg>
               }
             />
-          </p>
-          <button className=" bg-black w-full justify-center rounded-lg  text-white px-6 py-2 flex items-center gap-2 ">
+          </div>
+          <button
+            onClick={handleAddToCart}
+            className=" bg-black w-full justify-center rounded-lg  text-white px-6 py-2 flex items-center gap-2 "
+          >
             Add to cart <BsCart3 className="text-xl" />
           </button>
         </div>

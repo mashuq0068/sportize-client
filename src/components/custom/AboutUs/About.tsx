@@ -16,14 +16,14 @@ const About = () => {
       image: "/images/kohli.png",
     },
   ];
-  useEffect(() => {
-    // Function to change image every 2 seconds
-    const interval = setInterval(() => {
-      setImageIndex((prevIndex: number) => (prevIndex + 1) % images.length); // Cycle through images
-    }, 5000);
+  // useEffect(() => {
+  //   // Function to change image every 2 seconds
+  //   const interval = setInterval(() => {
+  //     setImageIndex((prevIndex: number) => (prevIndex + 1) % images.length); // Cycle through images
+  //   }, 5000);
 
-    return () => clearInterval(interval); // Clean up interval on component unmount
-  }, [images.length]);
+  //   return () => clearInterval(interval); // Clean up interval on component unmount
+  // }, [images.length]);
   return (
     <>
       {/* <div className="md:fixed md:block hidden right-[20%] top-[30%]">
@@ -38,47 +38,62 @@ const About = () => {
             src="https://www.shift4shop.com/2015/images/sell-online/digital-downloads/sporting-goods.png"
             alt="sporting-goods-image"
           /> */}
-          <img className="w-full duration-1000" src={`${images[imageIndex]?.image}`} alt="" />
+          <img
+            className="w-full duration-1000"
+            src={`${images[imageIndex]?.image}`}
+            alt=""
+          />
         </div>
-        <div className=" flex-1 space-y-6 z-20">
-          <p>
-            Welcome to Sportize, your ultimate destination for a wide range of
-            premium sporting goods designed to enhance your athletic performance
-            and passion for sports. Whether you're a seasoned competitor, a
-            weekend warrior, or someone just starting out, Sportize is here to
-            equip you with everything you need to excel in your favorite sports
-            and activities.
-          </p>
+        <div className="mt-12  text-gray-800 flex-1 space-y-14 z-20">
+          <div className="text-gray-500">
+            <h3 className=" text-black border-b-2 pb-2  border-b-black w-max mx-auto font-medium  text-center text-xl mb-5">
+              Information About Our Company
+            </h3>
+            <p className="text-gray-500">
+              Welcome to Sportize, your ultimate destination for a wide range of
+              premium sporting goods designed to enhance your athletic
+              performance and passion for sports. Whether you're a seasoned
+              competitor, a weekend warrior, or someone just starting out,
+              Sportize is here to equip you with everything you need to excel in
+              your favorite sports and activities.
+            </p>
+          </div>
 
-          <p>
-            At Sportize, we pride ourselves on offering an extensive selection
-            of products across various sports categories. Dive into our
-            comprehensive inventory, where you'll discover top-quality gear for
-            basketball, football, soccer, cricket, tennis, golf, and more. From
-            essential equipment like balls, bats, racquets, and goals to
-            specialized apparel such as jerseys, footwear, protective gear, and
-            training accessories, we have it all to meet your sporting needs.
-          </p>
+          <div className=" text-gray-500">
+            <h3 className=" text-black border-b-2 pb-2  border-b-black w-max mx-auto font-medium text-center text-xl mb-5">
+              Our Mission and Vision
+            </h3>
+            <p>
+              At Sportize, we pride ourselves on offering an extensive selection
+              of products across various sports categories. Dive into our
+              comprehensive inventory, where you'll discover top-quality gear
+              for basketball, football, soccer, cricket, tennis, golf, and more.
+              From essential equipment like balls, bats, racquets, and goals to
+              specialized apparel such as jerseys, footwear, protective gear,
+              and training accessories, we have it all to meet your sporting
+              needs.
+            </p>
 
-          <p>
-            Our commitment to excellence extends to our partnerships with
-            leading brands renowned for their innovation and reliability in
-            sports equipment. Whether you're seeking cutting-edge basketball
-            shoes, durable football cleats, precision-engineered tennis
-            racquets, or high-performance golf clubs, you can trust that each
-            product on Sportize meets the highest standards of quality and
-            functionality.
-          </p>
+            <p>
+              Our commitment to excellence extends to our partnerships with
+              leading brands renowned for their innovation and reliability in
+              sports equipment. Whether you're seeking cutting-edge basketball
+              shoes, durable football cleats, precision-engineered tennis
+              racquets, or high-performance golf clubs, you can trust that each
+              product on Sportize meets the highest standards of quality and
+              functionality.
+            </p>
 
-          <p>
-            Beyond providing superior sporting goods, Sportize fosters a vibrant
-            community where athletes of all ages and skill levels come together
-            to share their passion for sports. We understand that sports are
-            more than just physical activities—they're a source of inspiration,
-            discipline, and joy. That's why Sportize is dedicated to supporting
-            your journey, whether you're aiming for professional achievements or
-            simply enjoying recreational play.
-          </p>
+            <p>
+              Beyond providing superior sporting goods, Sportize fosters a
+              vibrant community where athletes of all ages and skill levels come
+              together to share their passion for sports. We understand that
+              sports are more than just physical activities—they're a source of
+              inspiration, discipline, and joy. That's why Sportize is dedicated
+              to supporting your journey, whether you're aiming for professional
+              achievements or simply enjoying recreational play.
+            </p>
+          </div>
 
           {/* <p>
             Shopping at Sportize is easy and secure, with a user-friendly

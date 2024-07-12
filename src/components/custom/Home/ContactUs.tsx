@@ -46,8 +46,9 @@ const ContactUs = () => {
               Contact Information
             </h2>
             <p className="block z-10 antialiased   md:text-lg font-normal leading-relaxed text-white mb-9  ">
-              We do not have any communication option unless email. We are 14
-              hours ready to rely your email.
+              
+              24/7 hours support by customer care +880494322943 / email us from below
+            
             </p>
           </div>
         </div>

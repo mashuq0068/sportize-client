@@ -11,28 +11,33 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { NavLink } from "react-router-dom";
+import {
+  useDeleteProductMutation,
+  useGetProductsQuery,
+} from "@/redux/features/products/products.api";
+import { IProduct } from "../AllProducts/ProductCard";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import toast from "react-hot-toast";
 
 const ManageProducts = () => {
-  const data = [
-    {
-      id: 1,
-    },
-    {
-      id: 1,
-    },
-    {
-      id: 1,
-    },
-    {
-      id: 1,
-    },
-    {
-      id: 1,
-    },
-    // {
-    //     id:1
-    // },
-  ];
+  const { data, isLoading } = useGetProductsQuery(undefined);
+  const [deleteProduct] = useDeleteProductMutation();
+  const handelDelete = async (id:string) => {
+    const res = await deleteProduct(id);
+    if (res?.data?.success) {
+      toast.success(res?.data?.message, { position: "top-center" });
+    }
+    if (res?.error) {
+      toast.error("Something went wrong. Please try again !", {
+        position: "top-center",
+      });
+    }
+  };
+  if (!data || isLoading) {
+    return (
+      <span className="loading relative left-[50%] loading-spinner loading-lg text-center my-16"></span>
+    );
+  }
   return (
     <div className="relative">
       <div className="mt-5 flex justify-end mb-5">
@@ -49,6 +54,7 @@ const ManageProducts = () => {
         <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">No</TableHead>
+            <TableHead>Image</TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Category</TableHead>
             <TableHead>Stock</TableHead>
@@ -58,20 +64,31 @@ const ManageProducts = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data?.map((oneData, i) => (
-            <TableRow key={i}>
-              <TableCell className="font-medium">1</TableCell>
-              <TableCell>Paid</TableCell>
-              <TableCell>Credit Card</TableCell>
-              <TableCell>$250.00</TableCell>
-              <TableCell>Puma</TableCell>
+          {data?.data?.map((product: IProduct, i: number) => (
+            <TableRow key={product?._id}>
+              <TableCell className="font-medium">{i + 1}</TableCell>
               <TableCell>
-                <NavLink to="/update-product/lf">
+                <PhotoProvider>
+                  <PhotoView src={product?.image}>
+                    <img
+                      className=" cursor-pointer h-[40px]"
+                      src={product?.image}
+                      alt=""
+                    />
+                  </PhotoView>
+                </PhotoProvider>
+              </TableCell>
+              <TableCell>{product?.name}</TableCell>
+              <TableCell>{product?.category}</TableCell>
+              <TableCell>${product?.stockQuantity}</TableCell>
+              <TableCell>{product?.brand}</TableCell>
+              <TableCell>
+                <NavLink to={`/update-product/${product?._id}`}>
                   <LuClipboardEdit className=" text-2xl" />
                 </NavLink>
               </TableCell>
               <TableCell>
-                <button>
+                <button onClick={()=>handelDelete(product?._id)}>
                   <RiDeleteBin6Line className=" text-2xl" />
                 </button>
               </TableCell>

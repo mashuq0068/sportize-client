@@ -9,7 +9,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { changeFilterState, clearFilter } from "@/redux/features/filter/filterSlice";
+import {
+  changeFilterState,
+  clearFilter,
+} from "@/redux/features/filter/filterSlice";
 
 const Filter = () => {
   const currentFilter = useAppSelector((state) => state.filter);
@@ -44,19 +47,28 @@ const Filter = () => {
     dispatch(changeFilterState(newFilter));
   };
   const handleClearFilter = () => {
-    
-    dispatch(clearFilter())
-  }
+    dispatch(clearFilter());
+  };
+  const handleSearch = (e) => {
+    e.preventDefault()
+    const searchTerm = e.target.search.value;
+    const newFilter = {
+      ...currentFilter,
+      searchTerm,
+    };
+    dispatch(changeFilterState(newFilter));
+  };
   return (
     <div className=" lg:mt-12 mt-5">
       {/* search */}
       <div className="flex md:justify-normal justify-between gap-5">
-        <p  className=" whitespace-nowrap text-xl flex gap-2 items-center font-medium">
+        <p className=" whitespace-nowrap text-xl flex gap-2 items-center font-medium">
           Filter Products <FaFilter />
         </p>
-        <form className="relative md:block hidden  w-full">
+        <form onSubmit={handleSearch} className="relative md:block hidden  w-full">
           <input
             type="text"
+            name="search"
             className=" focus:outline-none  border px-4 py-2 border-slate-300 w-full"
             placeholder="Search by product name"
           />
@@ -65,16 +77,23 @@ const Filter = () => {
           </button>
         </form>
         <div className=" whitespace-nowrap">
-          <button onClick={handleClearFilter} className="bg-black text-white px-4 py-2 flex gap-2 items-center">
+          <button
+            onClick={handleClearFilter}
+            className="bg-black text-white px-4 py-2 flex gap-2 items-center"
+          >
             Clear Filter <FaFilterCircleXmark className=" text-xl" />
           </button>
         </div>
       </div>
       {/* mobile search */}
       <div>
-        <form className="relative md:hidden mt-5 block w-full">
+        <form
+          onSubmit={handleSearch}
+          className="relative md:hidden mt-5 block w-full"
+        >
           <input
             type="text"
+            name="search"
             className="  border px-4 py-2 border-slate-300 w-full"
             placeholder="Search by product name"
           />
@@ -199,11 +218,36 @@ const Filter = () => {
               value={rating?.toString()}
               onValueChange={handleRating}
             >
-              <DropdownMenuRadioItem className="flex gap-2 items-center" value="5">5 <FaStar className=" text-amber-500"/></DropdownMenuRadioItem>
-              <DropdownMenuRadioItem className="flex gap-2 items-center" value="4">4 <FaStar className=" text-amber-500"/></DropdownMenuRadioItem>
-              <DropdownMenuRadioItem className="flex gap-2 items-center" value="3">3 <FaStar className=" text-amber-500"/></DropdownMenuRadioItem>
-              <DropdownMenuRadioItem className="flex gap-2 items-center" value="2">2 <FaStar className=" text-amber-500"/></DropdownMenuRadioItem>
-              <DropdownMenuRadioItem className="flex gap-2 items-center" value="1">1 <FaStar className=" text-amber-500"/></DropdownMenuRadioItem>
+              <DropdownMenuRadioItem
+                className="flex gap-2 items-center"
+                value="5"
+              >
+                5 <FaStar className=" text-amber-500" />
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem
+                className="flex gap-2 items-center"
+                value="4"
+              >
+                4 <FaStar className=" text-amber-500" />
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem
+                className="flex gap-2 items-center"
+                value="3"
+              >
+                3 <FaStar className=" text-amber-500" />
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem
+                className="flex gap-2 items-center"
+                value="2"
+              >
+                2 <FaStar className=" text-amber-500" />
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem
+                className="flex gap-2 items-center"
+                value="1"
+              >
+                1 <FaStar className=" text-amber-500" />
+              </DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>

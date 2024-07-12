@@ -8,18 +8,22 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState } from "react";
+import { useCreateProductMutation } from "@/redux/features/products/products.api";
+import toast from "react-hot-toast";
 
 interface FormData {
   name: string;
   category: string;
   brand: string;
+  price: number;
   rating: number;
-  stock: number;
+  stockQuantity: number;
   image: string;
   description: string;
 }
 
 const CreateProducts = () => {
+  const [createProduct, {}] = useCreateProductMutation();
   const [brand, setBrand] = useState("");
   const [category, setCategory] = useState("");
   const [brandError, setBrandError] = useState("");
@@ -31,7 +35,7 @@ const CreateProducts = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     if (!brand) {
       setBrandError("Product brand is required");
     }
@@ -44,9 +48,20 @@ const CreateProducts = () => {
       const product = {
         ...data,
         brand,
+        price: Number(data?.price),
+        rating: Number(data?.rating),
+        stockQuantity: Number(data?.stockQuantity),
         category,
       };
-      console.log(product);
+      const res = await createProduct(product);
+      if (res?.data?.success) {
+        toast.success(res?.data?.message, { position: "top-center" });
+      }
+      if (res?.error) {
+        toast.error("Something went wrong. Please try again !", {
+          position: "top-center",
+        });
+      }
     }
   };
 
@@ -95,7 +110,7 @@ const CreateProducts = () => {
                 </SelectGroup>
               </SelectContent>
             </Select>
-            {(CategoryError && !category) && (
+            {CategoryError && !category && (
               <p className="text-red-500 text-sm mt-1">{CategoryError}</p>
             )}
           </div>
@@ -121,7 +136,7 @@ const CreateProducts = () => {
                 </SelectGroup>
               </SelectContent>
             </Select>
-            {(brandError && !brand) && (
+            {brandError && !brand && (
               <p className="text-red-500 text-sm mt-1">{brandError}</p>
             )}
           </div>
@@ -151,10 +166,34 @@ const CreateProducts = () => {
 
           <div className="mb-5">
             <label className="mb-3 block text-base font-medium text-[#07074D]">
+              Price
+            </label>
+            <input
+              {...register("price", {
+                required: "Price is required",
+                pattern: {
+                  value: /^[0-9]*\.?[0-9]+$/,
+                  message: "Please enter a valid price",
+                },
+              })}
+              type="text"
+              placeholder="Price"
+              className={`w-full rounded-md border ${
+                errors.price ? "border-red-500" : "border-[#e0e0e0]"
+              } bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-black focus:shadow-md`}
+            />
+            {errors.price && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.price.message}
+              </p>
+            )}
+          </div>
+          <div className="mb-5">
+            <label className="mb-3 block text-base font-medium text-[#07074D]">
               Stock Quantity
             </label>
             <input
-              {...register("stock", {
+              {...register("stockQuantity", {
                 required: "Stock quantity is required",
                 pattern: {
                   value: /^[0-9]*$/,
@@ -164,12 +203,12 @@ const CreateProducts = () => {
               type="text"
               placeholder="Stock Quantity"
               className={`w-full rounded-md border ${
-                errors.stock ? "border-red-500" : "border-[#e0e0e0]"
+                errors.stockQuantity ? "border-red-500" : "border-[#e0e0e0]"
               } bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-black focus:shadow-md`}
             />
-            {errors.stock && (
+            {errors.stockQuantity && (
               <p className="text-red-500 text-sm mt-1">
-                {errors.stock.message}
+                {errors.stockQuantity.message}
               </p>
             )}
           </div>

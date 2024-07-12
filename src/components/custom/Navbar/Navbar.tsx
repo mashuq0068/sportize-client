@@ -1,8 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
 import { BsCart3 } from "react-icons/bs";
 import { RxAvatar } from "react-icons/rx";
+import { useAppSelector } from "@/redux/hooks";
 
 const Navbar = () => {
+  const cartProducts = useAppSelector((state) => state.cart)
   const navItems = (
     <>
       <li className=" hover:bg-white">
@@ -50,19 +52,21 @@ const Navbar = () => {
             {navItems}
           </ul>
         </div>
-        <NavLink
+        <Link
           to="/"
           className="btn btn-ghost text-xl xl:text-2xl font-semibold"
         >
           SPORTIZE
-        </NavLink>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu text-base menu-horizontal px-1">{navItems}</ul>
       </div>
-      <div className="navbar-end gap-5 items-center">
-        <Link to="cart">
+      <div className="navbar-end  gap-5 items-center">
+        <Link to="/cart" className=" relative">
           <BsCart3 className="text-2xl" />
+          {cartProducts?.length > 0 && <p className="text-xs rounded-full bg-red-600 text-white absolute w-4 -top-2 -right-1 h-4 flex items-center justify-center">{cartProducts?.length}</p>}
+
         </Link>
         <div>
           <RxAvatar className="text-4xl cursor-pointer" />

@@ -1,16 +1,20 @@
+import { RootState } from "@/redux/store";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 
 export interface IInitialState {
   brand: string | undefined;
   rating: number | undefined;
   category: string | undefined;
   price: number | undefined;
+  searchTerm:string | undefined
 }
 const initialState: IInitialState = {
   brand: undefined,
   rating: undefined,
   category: undefined,
   price: undefined,
+  searchTerm:undefined
 };
 const filterSlice = createSlice({
   name: "filter",
