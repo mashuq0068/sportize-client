@@ -19,9 +19,9 @@ interface FormData {
   description: string;
 }
 
-const CreateProducts = () => {
-  const [brand, setBrand] = useState("");
-  const [category, setCategory] = useState("");
+const UpdateProduct = () => {
+  const [brand, setBrand] = useState("puma");
+  const [category, setCategory] = useState("golf");
   const [brandError, setBrandError] = useState("");
   const [CategoryError, setCategoryError] = useState("");
 
@@ -59,6 +59,7 @@ const CreateProducts = () => {
               Name
             </label>
             <input
+              defaultValue={"name"}
               {...register("name", { required: "Product name is required" })}
               type="text"
               placeholder="Product Name"
@@ -75,7 +76,11 @@ const CreateProducts = () => {
             <label className="mb-3 block text-base font-medium text-[#07074D]">
               Category
             </label>
-            <Select value={category} onValueChange={setCategory}>
+            <Select
+             
+              value={category}
+              onValueChange={setCategory}
+            >
               <SelectTrigger className="outline-none text-[#6B7280] text-base">
                 <SelectValue
                   className="text-[#6B7280]"
@@ -95,7 +100,7 @@ const CreateProducts = () => {
                 </SelectGroup>
               </SelectContent>
             </Select>
-            {(CategoryError && !category) && (
+            {CategoryError && !category && (
               <p className="text-red-500 text-sm mt-1">{CategoryError}</p>
             )}
           </div>
@@ -104,7 +109,11 @@ const CreateProducts = () => {
             <label className="mb-3 block text-base font-medium text-[#07074D]">
               Brand
             </label>
-            <Select value={brand} onValueChange={setBrand}>
+            <Select
+             
+              value={brand}
+              onValueChange={setBrand}
+            >
               <SelectTrigger className="outline-none text-[#6B7280] text-base">
                 <SelectValue
                   className="text-[#6B7280]"
@@ -121,7 +130,7 @@ const CreateProducts = () => {
                 </SelectGroup>
               </SelectContent>
             </Select>
-            {(brandError && !brand) && (
+            {brandError && !brand && (
               <p className="text-red-500 text-sm mt-1">{brandError}</p>
             )}
           </div>
@@ -131,6 +140,7 @@ const CreateProducts = () => {
               Rating
             </label>
             <input
+              defaultValue={5}
               {...register("rating", {
                 required: "Rating is required",
                 min: { value: 0, message: "Rating must be at least 0" },
@@ -154,6 +164,7 @@ const CreateProducts = () => {
               Stock Quantity
             </label>
             <input
+              defaultValue={100}
               {...register("stock", {
                 required: "Stock quantity is required",
                 pattern: {
@@ -179,6 +190,7 @@ const CreateProducts = () => {
               Image
             </label>
             <input
+              defaultValue={"https:/ccv/.vom"}
               {...register("image", {
                 required: "Product image URL is required",
                 pattern: {
@@ -204,6 +216,7 @@ const CreateProducts = () => {
               Description
             </label>
             <textarea
+            defaultValue={"dvmxc"}
               {...register("description", {
                 required: "Description is required",
               })}
@@ -234,4 +247,4 @@ const CreateProducts = () => {
   );
 };
 
-export default CreateProducts;
+export default UpdateProduct;

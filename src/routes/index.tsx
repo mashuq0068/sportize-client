@@ -4,6 +4,8 @@ import AllProductsPage from "@/pages/AllProducts/AllProductsPage";
 import CreateProductPage from "@/pages/CreateProduct/CreateProductPage";
 import HomePage from "@/pages/Home/HomePage";
 import ManageProductsPage from "@/pages/ManageProducts/ManageProductsPage";
+import SingleProductPage from "@/pages/SingleProduct/SingleProductPage";
+import UpdateProductPage from "@/pages/UpdateProduct/UpdateProductPage";
 
 import { createBrowserRouter } from "react-router-dom";
 
@@ -29,9 +31,17 @@ const router = createBrowserRouter([
         element: <AllProductsPage />,
       },
       {
-        path:'create-product',
-        element:<CreateProductPage/>
-      }
+        path: "create-product",
+        element: <CreateProductPage />,
+      },
+      {
+        path: "update-product/:id",
+        element: <UpdateProductPage />,
+      },
+      {
+        path: "single-product/:id",
+        element: <SingleProductPage />,
+      },
     ],
   },
 ]);

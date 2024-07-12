@@ -41,7 +41,7 @@ const ManageProducts = () => {
           to="/create-product"
         >
           Create New
-          <MdCreateNewFolder className=" text-xl"/>
+          <MdCreateNewFolder className=" text-xl" />
         </NavLink>
       </div>
       <Table className=" mt-[30px]">
@@ -66,9 +66,9 @@ const ManageProducts = () => {
               <TableCell>$250.00</TableCell>
               <TableCell>Puma</TableCell>
               <TableCell>
-                <button>
+                <NavLink to="/update-product/lf">
                   <LuClipboardEdit className=" text-2xl" />
-                </button>
+                </NavLink>
               </TableCell>
               <TableCell>
                 <button>
