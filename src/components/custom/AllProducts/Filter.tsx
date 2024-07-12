@@ -101,7 +101,7 @@ const Filter = () => {
           <DropdownMenuContent className="border border-slate-300 mt-3 w-max md:w-36">
             <DropdownMenuRadioGroup value={brand} onValueChange={handleBrand}>
               <DropdownMenuRadioItem value="puma">Puma</DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="bottom">Nike</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="nike">Nike</DropdownMenuRadioItem>
               <DropdownMenuRadioItem value="adidas">
                 Adidas
               </DropdownMenuRadioItem>

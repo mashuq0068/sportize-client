@@ -50,9 +50,12 @@ const Navbar = () => {
             {navItems}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl xl:text-2xl font-semibold">
+        <NavLink
+          to="/"
+          className="btn btn-ghost text-xl xl:text-2xl font-semibold"
+        >
           SPORTIZE
-        </a>
+        </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu text-base menu-horizontal px-1">{navItems}</ul>
