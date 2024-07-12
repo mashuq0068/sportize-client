@@ -4,11 +4,17 @@
 @tailwind utilities;
 
 body {
-  max-width: 1350px;
+  max-width: 1350px !important;
   font-size: 16px;
   font-family: "Kanit", sans-serif;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+html body[data-scroll-locked] {
+  max-width: 1350px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  overflow: auto !important;
 }
 .active {
   font-weight: 500;
@@ -20,11 +26,11 @@ body {
 
 @media (max-width: 1200px) {
   body {
-    padding: 25px;
+    padding: 25px !important;
   }
 }
 @media (max-width: 500px) {
   body {
-    padding: 15px;
+    padding: 15px !important;
   }
 }
