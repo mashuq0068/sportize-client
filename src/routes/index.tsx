@@ -1,6 +1,7 @@
 import App from "@/App";
 import AboutUsPage from "@/pages/AboutUs/AboutUsPage";
 import AllProductsPage from "@/pages/AllProducts/AllProductsPage";
+import CreateProductPage from "@/pages/CreateProduct/CreateProductPage";
 import HomePage from "@/pages/Home/HomePage";
 import ManageProductsPage from "@/pages/ManageProducts/ManageProductsPage";
 
@@ -20,13 +21,17 @@ const router = createBrowserRouter([
         element: <ManageProductsPage />,
       },
       {
-        path: "/about-us",
+        path: "about-us",
         element: <AboutUsPage />,
       },
       {
-        path: "/all-products",
+        path: "all-products",
         element: <AllProductsPage />,
       },
+      {
+        path:'create-product',
+        element:<CreateProductPage/>
+      }
     ],
   },
 ]);
