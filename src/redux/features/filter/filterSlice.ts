@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface IInitialState {
   brand: string | undefined;
-  rating: number | undefined;
+  rating: string | undefined;
   category: string | undefined;
   price: number | undefined;
   searchTerm: string | undefined;

@@ -5,22 +5,54 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 
 import { useParams } from "react-router-dom";
-import { useGetSingleProductQuery } from "@/redux/features/products/products.api";
+import {
+  useCheckStockDetailsMutation,
+  useGetSingleProductQuery,
+} from "@/redux/features/products/products.api";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import toast from "react-hot-toast";
-import { addProduct } from "@/redux/features/cart/cart.slice";
+import {
+  addProduct,
+  ICartProduct,
+  increaseQuantityById,
+} from "@/redux/features/cart/cart.slice";
+import { useEffect, useState } from "react";
 
 const SingleProduct = () => {
-  const dispatch = useAppDispatch();
   const cartProducts = useAppSelector((state) => state.cart);
+  const [checkStock] = useCheckStockDetailsMutation();
+  const dispatch = useAppDispatch();
+  const [overStockProducts, setOverStockProducts] = useState([]);
   const params = useParams();
   const id = params?.id;
   const { data, isLoading, isFetching } = useGetSingleProductQuery(id);
+  // check stock function
+  const checkStockAndUpdate = async (products: ICartProduct[]) => {
+    const res = await checkStock(products);
+    if (res) {
+      const data = res?.data?.data;
+      setOverStockProducts(data);
+      if (data?.length > 0) {
+        toast.error(
+          `${data[0]?.name} is available only ${data[0]?.stockQuantity} in the stock`
+        );
+      }
+    }
+  };
+
+  // check stock after every increase
+  useEffect(() => {
+    if (cartProducts.length > 0) {
+      checkStockAndUpdate(cartProducts);
+    }
+  }, [cartProducts]);
+  // loading
   if (!data || isLoading || isFetching) {
     return (
       <span className="loading relative left-[50%] loading-spinner loading-lg text-center my-16"></span>
     );
   }
+
   const {
     _id,
     name,
@@ -44,10 +76,7 @@ const SingleProduct = () => {
       (product) => product?._id === cartData?._id
     );
     if (isProductAlreadyExist) {
-      return toast.error("This product already added into cart", {
-        duration: 3000,
-        position: "top-center",
-      });
+      return dispatch(increaseQuantityById(_id));
     }
 
     dispatch(addProduct(cartData));
@@ -131,17 +160,17 @@ const SingleProduct = () => {
               }
             />
           </div>
-          {stockQuantity > 0 ? (
+          {overStockProducts?.length > 0 ? (
             <button
-              onClick={handleAddToCart}
-              className=" bg-black w-full justify-center rounded-lg  text-white px-6 py-2 flex items-center gap-2 "
+              disabled
+              className=" bg-slate-300 w-full justify-center rounded-lg  text-white px-6 py-2 flex items-center gap-2 "
             >
               Add to cart <BsCart3 className="text-xl" />
             </button>
           ) : (
             <button
-              disabled={stockQuantity === 0}
-              className=" bg-slate-300 w-full justify-center rounded-lg  text-white px-6 py-2 flex items-center gap-2 "
+              onClick={handleAddToCart}
+              className=" bg-black w-full justify-center rounded-lg  text-white px-6 py-2 flex items-center gap-2 "
             >
               Add to cart <BsCart3 className="text-xl" />
             </button>

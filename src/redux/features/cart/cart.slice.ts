@@ -31,7 +31,13 @@ const cartSlice = createSlice({
     decreaseQuantity(state, action) {
       state[action.payload].quantity--;
     },
-    // chaeckQunatity ()
+    increaseQuantityById(state, action: PayloadAction<string>) {
+      const index = state.findIndex((product) => product._id === action.payload);
+      if (index !== -1) {
+        state[index].quantity++;
+      }
+    },
+
   },
 });
 
@@ -41,5 +47,6 @@ export const {
   removeAllProducts,
   increaseQuantity,
   decreaseQuantity,
+  increaseQuantityById
 } = cartSlice.actions;
 export default cartSlice.reducer;

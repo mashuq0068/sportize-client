@@ -80,7 +80,7 @@ const ManageProducts = () => {
               </TableCell>
               <TableCell>{product?.name}</TableCell>
               <TableCell>{product?.category}</TableCell>
-              <TableCell>${product?.stockQuantity}</TableCell>
+              <TableCell>{product?.stockQuantity}</TableCell>
               <TableCell>{product?.brand}</TableCell>
               <TableCell>
                 <NavLink to={`/update-product/${product?._id}`}>

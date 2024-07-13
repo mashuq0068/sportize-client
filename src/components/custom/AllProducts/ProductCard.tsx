@@ -1,7 +1,7 @@
 
 import { GoArrowRight } from "react-icons/go";
 import Rating from "react-rating";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import 'aos/dist/aos.css'; 
 
 export interface IProduct {
@@ -18,7 +18,14 @@ export interface IProduct {
 interface ProductProps {
   product: IProduct;
 }
+
+
 const ProductCard = ({ product }: ProductProps) => {
+  const location = useLocation();
+  const currentRoute = location.pathname;
+
+  // Determine whether to apply aos animation
+  const applyAOS = currentRoute !== "/all-products";
   const {
     _id,
     name,
@@ -34,7 +41,7 @@ const ProductCard = ({ product }: ProductProps) => {
  
   return (
     <div
-      data-aos="fade-up"
+    data-aos={applyAOS ? "fade-up" : undefined}
       data-aos-duration="2000"
       className="relative group "
     >

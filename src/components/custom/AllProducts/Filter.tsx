@@ -48,7 +48,7 @@ const Filter = () => {
   const handleRating = (data: string) => {
     const newFilter = {
       ...currentFilter,
-      rating: Number(data),
+      rating: data,
     };
     dispatch(changeFilterState(newFilter));
   };
@@ -233,33 +233,27 @@ const Filter = () => {
             >
               <DropdownMenuRadioItem
                 className="flex gap-2 items-center"
-                value="5"
+                value="5-4"
               >
-                5 <FaStar className=" text-amber-500" />
+                5-4 <FaStar className=" text-amber-500" />
               </DropdownMenuRadioItem>
               <DropdownMenuRadioItem
                 className="flex gap-2 items-center"
-                value="4"
+                value="4-3"
               >
-                4 <FaStar className=" text-amber-500" />
+                4-3 <FaStar className=" text-amber-500" />
               </DropdownMenuRadioItem>
               <DropdownMenuRadioItem
                 className="flex gap-2 items-center"
-                value="3"
+                value="3-2"
               >
-                3 <FaStar className=" text-amber-500" />
+                3-2 <FaStar className=" text-amber-500" />
               </DropdownMenuRadioItem>
               <DropdownMenuRadioItem
                 className="flex gap-2 items-center"
-                value="2"
+                value="2-1"
               >
-                2 <FaStar className=" text-amber-500" />
-              </DropdownMenuRadioItem>
-              <DropdownMenuRadioItem
-                className="flex gap-2 items-center"
-                value="1"
-              >
-                1 <FaStar className=" text-amber-500" />
+                2-1 <FaStar className=" text-amber-500" />
               </DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
