@@ -3,7 +3,7 @@ import ProductCard, { IProduct } from "./ProductCard";
 import { useAppSelector } from "@/redux/hooks";
 
 const AllProducts = () => {
-  const { brand, rating, category, searchTerm, price } = useAppSelector(
+  const { brand, rating, category, searchTerm, price , sort } = useAppSelector(
     (state) => state.filter
   );
   const queryParams = {
@@ -12,6 +12,7 @@ const AllProducts = () => {
     category,
     searchTerm,
     price,
+    sort
   };
   const { data  , isLoading} = useGetProductsQuery(queryParams);
   if(data?.data?.length === 0 ) {

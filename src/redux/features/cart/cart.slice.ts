@@ -25,12 +25,13 @@ const cartSlice = createSlice({
     },
     // increasing quantity
     increaseQuantity(state, action) {
-      state[action.payload].quantity++;
+      state[action.payload].quantity = state[action.payload].quantity + 1;
     },
     // decreasing quantity
     decreaseQuantity(state, action) {
       state[action.payload].quantity--;
     },
+    // chaeckQunatity ()
   },
 });
 

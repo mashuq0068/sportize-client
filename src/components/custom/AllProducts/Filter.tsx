@@ -17,7 +17,7 @@ import {
 const Filter = () => {
   const currentFilter = useAppSelector((state) => state.filter);
   const dispatch = useAppDispatch();
-  const { brand, category, price, rating } = currentFilter;
+  const { brand, category, price, rating , sort } = currentFilter;
   const handleBrand = (data: string) => {
     const newFilter = {
       ...currentFilter,
@@ -43,6 +43,13 @@ const Filter = () => {
     const newFilter = {
       ...currentFilter,
       rating: Number(data),
+    };
+    dispatch(changeFilterState(newFilter));
+  };
+  const handleSortByPrice = (data: string) => {
+    const newFilter = {
+      ...currentFilter,
+      sort:data,
     };
     dispatch(changeFilterState(newFilter));
   };
@@ -133,7 +140,7 @@ const Filter = () => {
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>
-        {/* brand */}
+        {/* category */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button
@@ -174,7 +181,7 @@ const Filter = () => {
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>
-        {/* brand */}
+        {/* max price */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button
@@ -200,7 +207,7 @@ const Filter = () => {
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>
-        {/* brand */}
+        {/* rating*/}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button
@@ -248,6 +255,40 @@ const Filter = () => {
               >
                 1 <FaStar className=" text-amber-500" />
               </DropdownMenuRadioItem>
+            </DropdownMenuRadioGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        {/* sort by price*/}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <button
+              className={`${
+                sort ? "bg-black text-white" : "bg-white text-black"
+              } relative  px-6 py-2 w  overflow-hidden border border-black   text-black shadow-2xl transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-black hover:before:w-2/4 hover:before:bg-black hover:after:w-2/4 hover:after:bg-black uppercase`}
+            >
+              <span className="relative z-10 flex gap-2 items-center">
+              sort by price
+              </span>
+            </button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="border w-max   border-slate-300 mt-3 ">
+            <DropdownMenuRadioGroup
+              value={sort}
+              onValueChange={handleSortByPrice}
+            >
+              <DropdownMenuRadioItem
+                className="flex gap-2 items-center"
+                value="price"
+              >
+                Ascending
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem
+                className="flex gap-2 items-center"
+                value="-price"
+              >
+                Descending
+              </DropdownMenuRadioItem>
+            
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>

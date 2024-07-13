@@ -51,7 +51,7 @@ const SingleProduct = () => {
     }
 
     dispatch(addProduct(cartData));
-    toast.success("Product Added to cart")
+    toast.success("Product Added to cart");
   };
 
   return (
@@ -74,7 +74,7 @@ const SingleProduct = () => {
           <div>{description}</div>
         </div>
         {/* right */}
-        <div className="text-lg  flex-1 mt-[30px] lg:mt-[100px] lg:h-max pt-[2%]   px-[2%]  space-y-3 drop-shadow-xl rounded-xl shadow-xl  ">
+        <div className="text-lg  flex-1 mt-[30px] lg:mt-[100px] lg:h-max pt-[2%]   px-[2%]  space-y-3  rounded-xl   ">
           <p className="spacing flex items-center gap-2 capitalize text-gray-600">
             <span className="lg:font-medium  text-black">Name</span> : {name}
           </p>
@@ -131,12 +131,21 @@ const SingleProduct = () => {
               }
             />
           </div>
-          <button
-            onClick={handleAddToCart}
-            className=" bg-black w-full justify-center rounded-lg  text-white px-6 py-2 flex items-center gap-2 "
-          >
-            Add to cart <BsCart3 className="text-xl" />
-          </button>
+          {stockQuantity > 0 ? (
+            <button
+              onClick={handleAddToCart}
+              className=" bg-black w-full justify-center rounded-lg  text-white px-6 py-2 flex items-center gap-2 "
+            >
+              Add to cart <BsCart3 className="text-xl" />
+            </button>
+          ) : (
+            <button
+              disabled={stockQuantity === 0}
+              className=" bg-slate-300 w-full justify-center rounded-lg  text-white px-6 py-2 flex items-center gap-2 "
+            >
+              Add to cart <BsCart3 className="text-xl" />
+            </button>
+          )}
         </div>
       </div>
     </div>

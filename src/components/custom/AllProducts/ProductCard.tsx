@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { GoArrowRight } from "react-icons/go";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
@@ -28,18 +29,22 @@ const ProductCard = ({ product }: ProductProps) => {
     image,
     description,
   } = product;
+  
   return (
     <div className="relative group ">
       {/* Card container to ensure correct z-index stacking */}
       <div className="relative p-5   z-10">
         {/* Overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-70 opacity-0 group-hover:opacity-100 transform translate-y-full group-hover:translate-y-0 transition-all duration-500 flex items-center justify-center z-20">
-          <Link
-            to={`/single-product/${_id}`}
-            className="border flex gap-2 items-center border-white text-white  px-4 py-2 rounded"
-          >
-            View Details <GoArrowRight />
-          </Link>
+          {
+            <Link
+              to={`/single-product/${_id}`}
+              className="border flex gap-2 items-center border-white text-white  px-4 py-2 rounded"
+            >
+              View Details <GoArrowRight />
+            </Link>
+          
+          }
         </div>
         {/* Content */}
         <div className="relative">

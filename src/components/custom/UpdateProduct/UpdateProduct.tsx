@@ -33,12 +33,13 @@ const UpdateProduct = () => {
   const { data, isLoading, isFetching } = useGetSingleProductQuery(id);
   const [updateProduct] = useUpdateProductMutation();
   const product = data?.data;
+  // const {category , brand} = product
   const [brand, setBrand] = useState(product?.brand);
   const [category, setCategory] = useState(product?.category);
   const [brandError, setBrandError] = useState("");
   const [CategoryError, setCategoryError] = useState("");
   useEffect(() => {
-    if (product) {
+    if (product?.category && product?.brand) {
       setBrand(product.brand);
       setCategory(product.category);
     }
