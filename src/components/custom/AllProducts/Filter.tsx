@@ -23,7 +23,7 @@ interface FormEvent extends React.FormEvent<HTMLFormElement> {
 const Filter = () => {
   const currentFilter = useAppSelector((state) => state.filter);
   const dispatch = useAppDispatch();
-  const { brand, category, price, rating , sort } = currentFilter;
+  const { brand, category, price, rating, sort, searchTerm } = currentFilter;
   const handleBrand = (data: string) => {
     const newFilter = {
       ...currentFilter,
@@ -55,15 +55,15 @@ const Filter = () => {
   const handleSortByPrice = (data: string) => {
     const newFilter = {
       ...currentFilter,
-      sort:data,
+      sort: data,
     };
     dispatch(changeFilterState(newFilter));
   };
   const handleClearFilter = () => {
     dispatch(clearFilter());
   };
-  const handleSearch = (e:FormEvent) => {
-    e.preventDefault()
+  const handleSearch = (e: FormEvent) => {
+    e.preventDefault();
     const searchTerm = e.target.search.value;
     const newFilter = {
       ...currentFilter,
@@ -78,8 +78,12 @@ const Filter = () => {
         <p className=" whitespace-nowrap text-xl flex gap-2 items-center font-medium">
           Filter Products <FaFilter />
         </p>
-        <form onSubmit={handleSearch} className="relative md:block hidden  w-full">
+        <form
+          onSubmit={handleSearch}
+          className="relative md:block hidden  w-full"
+        >
           <input
+            defaultValue={searchTerm}
             type="text"
             name="search"
             className=" focus:outline-none  border px-4 py-2 border-slate-300 w-full"
@@ -267,7 +271,7 @@ const Filter = () => {
               } relative  px-6 py-2 w  overflow-hidden border border-black   text-black shadow-2xl transition-all before:absolute before:left-0 before:top-0 before:h-full before:w-0 before:duration-500 after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:duration-500 hover:text-white hover:shadow-black hover:before:w-2/4 hover:before:bg-black hover:after:w-2/4 hover:after:bg-black uppercase`}
             >
               <span className="relative z-10 flex gap-2 items-center">
-              sort by price
+                sort by price
               </span>
             </button>
           </DropdownMenuTrigger>
@@ -288,7 +292,6 @@ const Filter = () => {
               >
                 Descending
               </DropdownMenuRadioItem>
-            
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>
