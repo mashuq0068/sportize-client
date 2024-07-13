@@ -20,7 +20,7 @@ const filterSlice = createSlice({
   name: "filter",
   initialState: initialState,
   reducers: {
-    changeFilterState: (state, action: PayloadAction<IInitialState>) => {
+    changeFilterState: (_state, action: PayloadAction<IInitialState>) => {
       return action.payload;
     },
     clearFilter: (state) => {

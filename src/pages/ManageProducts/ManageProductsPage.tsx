@@ -1,5 +1,4 @@
 import ManageProducts from '@/components/custom/ManageProducts/ManageProducts';
-import React from 'react';
 
 const ManageProductsPage = () => {
     return (

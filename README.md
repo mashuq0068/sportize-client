@@ -11,6 +11,7 @@ your favorite sports and activities.
 ## Table of Contents
 
 - [Features](#features)
+- [Technologies](#technologies)
 - [Installation](#installation)
 - [Scripts](#scripts)
 - [Dependencies](#dependencies)
@@ -24,6 +25,16 @@ your favorite sports and activities.
 - Can filter, search and sort in products
 - user can manage his product by delete , update and add new product
 - It allows user to add products to cart and checkout products.
+
+## Technologies
+
+- React
+- Typescript
+- Node js
+- Redux
+- RTK Query
+- Shadcn Ui
+- React router dom
 
 ## Installation
 
@@ -137,6 +148,4 @@ The project also includes the following development dependencies:
 
 ## Deployment
 
-- Live Link: [Bike-rental project live link](https://bike-rental-backend-six.vercel.app/)
-
-
+- Live Link: [Sportize project live link](https://sportize-client.vercel.app/)

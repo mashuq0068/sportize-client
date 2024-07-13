@@ -15,7 +15,6 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useCheckoutProductsMutation } from "@/redux/features/products/products.api";
 import toast from "react-hot-toast";
 import { removeAllProducts } from "@/redux/features/cart/cart.slice";
-import Overlay from "@/utils/Overlay";
 
 interface FormData {
   name: string;
@@ -27,7 +26,6 @@ interface FormData {
 const Checkout = () => {
   const [paymentOption, setPaymentOption] = useState("");
   const [paymentOptionError, setPaymentOptionError] = useState("");
-  const [showOverlay, setShowOverlay] = useState(false);
   const dispatch = useAppDispatch();
   const checkoutProducts = useAppSelector((state) => state.cart);
   const [checkout] = useCheckoutProductsMutation();
@@ -38,7 +36,6 @@ const Checkout = () => {
     formState: { errors },
   } = useForm<FormData>();
   const showToast = () => {
-    setShowOverlay(true);
     toast.success(
       "Congratulations! Your checkout is successful. You will get your delivery in 48 hours",
       {
@@ -46,9 +43,6 @@ const Checkout = () => {
         className: "text-center  flex flex-col w-[300px]  z-50",
       }
     );
-    setTimeout(() => {
-      setShowOverlay(false);
-    }, 5000);
   };
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {

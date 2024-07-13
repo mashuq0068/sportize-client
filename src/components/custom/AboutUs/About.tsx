@@ -16,14 +16,14 @@ const About = () => {
       image: "/images/kohli.png",
     },
   ];
-  // useEffect(() => {
-  //   // Function to change image every 2 seconds
-  //   const interval = setInterval(() => {
-  //     setImageIndex((prevIndex: number) => (prevIndex + 1) % images.length); // Cycle through images
-  //   }, 5000);
+  useEffect(() => {
+    // Function to change image every 2 seconds
+    const interval = setInterval(() => {
+      setImageIndex((prevIndex: number) => (prevIndex + 1) % images.length); // Cycle through images
+    }, 5000);
 
-  //   return () => clearInterval(interval); // Clean up interval on component unmount
-  // }, [images.length]);
+    return () => clearInterval(interval); // Clean up interval on component unmount
+  }, [images.length]);
   return (
     <>
       {/* <div className="md:fixed md:block hidden right-[20%] top-[30%]">

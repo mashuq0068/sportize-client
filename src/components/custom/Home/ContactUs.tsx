@@ -1,14 +1,20 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useSendEmailMutation } from "@/redux/features/contact/contact.api";
-import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 const ContactUs = () => {
-  const [sendEmail, { data, isLoading }] = useSendEmailMutation();
+  const [sendEmail, { isLoading }] = useSendEmailMutation();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const message = e.target.message.value;
+    const target = e.target as typeof e.target & {
+      name: { value: string };
+      email: { value: string };
+      message: { value: string };
+    };
+
+    const name = target.name.value;
+    const email = target.email.value;
+    const message = target.message.value;
     const payload = {
       name,
       email,
@@ -46,9 +52,8 @@ const ContactUs = () => {
               Contact Information
             </h2>
             <p className="block z-10 antialiased   md:text-lg font-normal leading-relaxed text-white mb-9  ">
-              
-              24/7 hours support by customer care +880494322943 / email us from below
-            
+              24/7 hours support by customer care +880494322943 / email us from
+              below
             </p>
           </div>
         </div>

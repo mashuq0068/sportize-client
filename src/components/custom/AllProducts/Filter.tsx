@@ -13,7 +13,13 @@ import {
   changeFilterState,
   clearFilter,
 } from "@/redux/features/filter/filterSlice";
-
+interface FormEvent extends React.FormEvent<HTMLFormElement> {
+  target: HTMLFormElement & {
+    search: {
+      value: string;
+    };
+  };
+}
 const Filter = () => {
   const currentFilter = useAppSelector((state) => state.filter);
   const dispatch = useAppDispatch();
@@ -56,7 +62,7 @@ const Filter = () => {
   const handleClearFilter = () => {
     dispatch(clearFilter());
   };
-  const handleSearch = (e) => {
+  const handleSearch = (e:FormEvent) => {
     e.preventDefault()
     const searchTerm = e.target.search.value;
     const newFilter = {
