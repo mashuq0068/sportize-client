@@ -77,7 +77,7 @@ const ProductCard = ({ product }: ProductProps) => {
             <p>{description?.slice(0, 69)}</p>
           </div>
           {/* rating */}
-          <div className="mb-2">
+          <div className="mb-2 flex items-center gap-2">
             {/* @ts-expect-error there is a version miss-match in the source */}
             <Rating
               initialRating={rating}
@@ -110,6 +110,7 @@ const ProductCard = ({ product }: ProductProps) => {
                 </svg>
               }
             />
+            <p className=" text-gray-700 text-[14px]">{rating}</p>
           </div>
           {/* available */}
           <div className="bg-slate-800 px-2 py-1 w-max text-white">

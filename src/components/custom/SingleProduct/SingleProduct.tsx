@@ -159,6 +159,7 @@ const SingleProduct = () => {
                 </svg>
               }
             />
+              <p className=" text-gray-700">{rating}</p>
           </div>
           {overStockProducts?.length > 0 ? (
             <button
