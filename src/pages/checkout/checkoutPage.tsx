@@ -1,11 +1,12 @@
+import Checkout from "@/components/custom/Checkout/Checkout";
 
 
-const checkoutPage = () => {
+const CheckoutPage = () => {
     return (
         <div>
-            
+            <Checkout/>
         </div>
     );
 };
 
-export default checkoutPage;
+export default CheckoutPage;

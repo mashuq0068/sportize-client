@@ -1,7 +1,8 @@
-import toast from "react-hot-toast";
+
 import { GoArrowRight } from "react-icons/go";
 import Rating from "react-rating";
 import { Link } from "react-router-dom";
+import 'aos/dist/aos.css'; 
 
 export interface IProduct {
   _id: string;
@@ -29,9 +30,14 @@ const ProductCard = ({ product }: ProductProps) => {
     image,
     description,
   } = product;
-  
+
+ 
   return (
-    <div className="relative group ">
+    <div
+      data-aos="fade-up"
+      data-aos-duration="2000"
+      className="relative group "
+    >
       {/* Card container to ensure correct z-index stacking */}
       <div className="relative p-5   z-10">
         {/* Overlay */}
@@ -43,7 +49,6 @@ const ProductCard = ({ product }: ProductProps) => {
             >
               View Details <GoArrowRight />
             </Link>
-          
           }
         </div>
         {/* Content */}

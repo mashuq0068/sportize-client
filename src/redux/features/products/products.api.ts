@@ -15,7 +15,7 @@ const productsApi = baseApi.injectEndpoints({
       },
       providesTags: ["product"],
     }),
-   
+
     getSingleProduct: builder.query({
       query: (id) => ({ url: `products/${id}` }),
       providesTags: ["product"],
@@ -25,10 +25,9 @@ const productsApi = baseApi.injectEndpoints({
         return {
           url: `/products/check-stock`,
           method: "POST",
-          body : cartProducts
+          body: cartProducts,
         };
       },
-      
     }),
     createProduct: builder.mutation({
       query: (payload) => ({
@@ -56,6 +55,14 @@ const productsApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["product"],
     }),
+    checkoutProducts: builder.mutation({
+      query: (payload) => ({
+        url: "/products/checkout",
+        method: "POST",
+        body: payload,
+      }),
+      invalidatesTags: ["product"],
+    }),
   }),
 });
 
@@ -65,6 +72,6 @@ export const {
   useCreateProductMutation,
   useDeleteProductMutation,
   useUpdateProductMutation,
-  useCheckStockDetailsMutation
-
+  useCheckStockDetailsMutation,
+  useCheckoutProductsMutation,
 } = productsApi;

@@ -2,6 +2,7 @@ import App from "@/App";
 import AboutUsPage from "@/pages/AboutUs/AboutUsPage";
 import AllProductsPage from "@/pages/AllProducts/AllProductsPage";
 import CartPage from "@/pages/Cart/CartPage";
+import CheckoutPage from "@/pages/Checkout/CheckoutPage";
 import CreateProductPage from "@/pages/CreateProduct/CreateProductPage";
 import HomePage from "@/pages/Home/HomePage";
 import ManageProductsPage from "@/pages/ManageProducts/ManageProductsPage";
@@ -44,9 +45,13 @@ const router = createBrowserRouter([
         element: <SingleProductPage />,
       },
       {
-        path: "/cart",
+        path: "cart",
         element: <CartPage />,
       },
+      {
+        path:'checkout',
+        element:<CheckoutPage/>
+      }
     ],
   },
 ]);

@@ -64,7 +64,12 @@ const Categories = () => {
       </h3>
       <div className=" grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1">
         {categories?.map((category, i) => (
-          <div key={i} className="relative group ">
+          <div
+            data-aos="fade-right"
+            data-aos-duration="2000"
+            key={i}
+            className="relative group "
+          >
             {/* Card container to ensure correct z-index stacking */}
             <div className="relative p-5   z-10">
               {/* Overlay */}

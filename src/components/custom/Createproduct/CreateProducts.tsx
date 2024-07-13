@@ -23,7 +23,7 @@ interface FormData {
 }
 
 const CreateProducts = () => {
-  const [createProduct, {}] = useCreateProductMutation();
+  const [createProduct] = useCreateProductMutation();
   const [brand, setBrand] = useState("");
   const [category, setCategory] = useState("");
   const [brandError, setBrandError] = useState("");
