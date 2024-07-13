@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm, SubmitHandler } from "react-hook-form";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { useState } from "react";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectGroup,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@/components/ui/select";
+// 
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { useCheckoutProductsMutation } from "@/redux/features/products/products.api";
@@ -24,8 +24,8 @@ interface FormData {
 }
 
 const Checkout = () => {
-  const [paymentOption, setPaymentOption] = useState("");
-  const [paymentOptionError, setPaymentOptionError] = useState("");
+  //   const [paymentOption, setPaymentOption] = useState("");
+  //   const [paymentOptionError, setPaymentOptionError] = useState("");
   const dispatch = useAppDispatch();
   const checkoutProducts = useAppSelector((state) => state.cart);
   const [checkout] = useCheckoutProductsMutation();
@@ -46,25 +46,19 @@ const Checkout = () => {
   };
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    if (!paymentOption) {
-      setPaymentOptionError("Choose your payment option.");
-    }
-    if (data && paymentOption) {
-      setPaymentOptionError("");
-      if (paymentOption === "stripe") {
-        navigate("/stripe-payment");
-      } else {
-        const checkoutData = {
-          ...data,
-          paymentOption,
-          checkoutProducts,
-        };
-        const res = await checkout(checkoutData);
-        if (res?.data?.data) {
-          navigate("/");
-          showToast();
-          dispatch(removeAllProducts());
-        }
+    // if (!paymentOption) {
+    //   setPaymentOptionError("Choose your payment option.");
+    // }
+    if (data) {
+      const checkoutData = {
+        ...data,
+        checkoutProducts,
+      };
+      const res = await checkout(checkoutData);
+      if (res?.data?.data) {
+        navigate("/");
+        showToast();
+        dispatch(removeAllProducts());
       }
     }
   };
@@ -155,7 +149,7 @@ const Checkout = () => {
           </div>
 
           {/* payment option */}
-          <div className="mb-5">
+          {/* <div className="mb-5">
             <label className="mb-3 block text-base font-medium text-[#07074D]">
               Payment Option
             </label>
@@ -178,7 +172,7 @@ const Checkout = () => {
             {paymentOptionError && !paymentOption && (
               <p className="text-red-500 text-sm mt-1">{paymentOptionError}</p>
             )}
-          </div>
+          </div> */}
 
           <div>
             <button

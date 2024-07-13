@@ -4,6 +4,7 @@ import AllProductsPage from "@/pages/AllProducts/AllProductsPage";
 import CartPage from "@/pages/Cart/CartPage";
 import CheckoutPage from "@/pages/Checkout/CheckoutPage";
 import CreateProductPage from "@/pages/CreateProduct/CreateProductPage";
+import ErrorPage from "@/pages/Error/ErrorPage";
 import HomePage from "@/pages/Home/HomePage";
 import ManageProductsPage from "@/pages/ManageProducts/ManageProductsPage";
 import SingleProductPage from "@/pages/SingleProduct/SingleProductPage";
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -51,7 +53,11 @@ const router = createBrowserRouter([
       {
         path:'checkout',
         element:<CheckoutPage/>
-      }
+      },
+      // {
+      //   path:'stripe-payment',
+      //   element:<StripePaymentPage/>
+      // }
     ],
   },
 ]);
