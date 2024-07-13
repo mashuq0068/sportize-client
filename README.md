@@ -32,7 +32,7 @@ To get started with the Sportize, you need to have Node.js and npm installed on 
 1. Clone the repository:
 
 ```bash
-  git clone https://github.com/yourusername/bike-rental-backend.git
+  git clone https://github.com/mashuq0068/sportize-client.git
 ```
 
 2. Navigate to the project directory:
@@ -56,6 +56,7 @@ Run the project.
 ```bash
 npm run dev
 ```
+
 ### `build`
 
 Compile the TypeScript code to JavaScript.
@@ -84,33 +85,55 @@ npm run preview
 
 The project relies on the following dependencies:
 
-- **@types/bcrypt**: ^5.0.2
-- **@types/jsonwebtoken**: ^9.0.6
-- **bcrypt**: ^5.1.1
-- **cors**: ^2.8.5
-- **dotenv**: ^16.4.5
-- **express**: ^4.19.2
-- **http-status**: ^1.7.4
-- **jsonwebtoken**: ^9.0.2
-- **mongoose**: ^8.4.1
-- **mongose**: ^0.0.2-security
-- **zod**: ^3.23.8
+- **:@fortawesome/fontawesome-svg-core**: "^6.5.2",
+- **:@fortawesome/free-solid-svg-icons**: "^6.5.2",
+- **:@fortawesome/react-fontawesome**: "^0.2.2",
+- **:@radix-ui/react-dropdown-menu**: "^2.1.1",
+- **:@radix-ui/react-select**: "^2.1.1",
+- **:@radix-ui/react-slot**: "^1.1.0",
+- **:@react-icons/all-files**: "^4.1.0",
+- **:@reduxjs/toolkit**: "^2.2.6",
+- **:@types/aos**: "^3.0.7",
+- **:aos**: "^2.3.4",
+- **:className-variance-authority**: "^0.7.0",
+- **:clsx**: "^2.1.1",
+- **:lucide-react**: "^0.407.0",
+- **:next-themes**: "^0.3.0",
+- **:react**: "^18.3.1",
+- **:react-dom**: "^18.3.1",
+- **:react-fast-marquee**: "^1.6.5",
+- **:react-hook-form**: "^7.52.1",
+- **:react-hot-toast**: "^2.4.1",
+- **:react-icons**: "^5.2.1",
+- **:react-photo-view**: "^1.2.6",
+- **:react-rating**: "^2.0.5",
+- **:react-redux**: "^9.1.2",
+- **:react-router-dom**: "^6.24.1",
+- **:sonner**: "^1.5.0",
+- **:sweetalert2**: "^6.6.1",
+- **:swiper**: "^11.1.4",
+- **:tailwind-merge**: "^2.4.0",
+- **:tailwindcss-animate**: "^1.0.7"
 
 ## Dev Dependencies
 
 The project also includes the following development dependencies:
 
-- **@eslint/js**: ^9.4.0
-- **@types/cors**: ^2.8.17
-- **@types/express**: ^4.17.21
-- **@typescript-eslint/eslint-plugin**: ^7.13.0
-- **@typescript-eslint/parser**: ^7.13.0
-- **eslint**: ^8.57.0
-- **eslint-config-prettier**: ^9.1.0
-- **globals**: ^15.4.0
-- **prettier**: ^3.3.2
-- **typescript**: ^5.4.5
-- **typescript-eslint**: ^7.13.0
+- **@types/node** "^20.14.10",
+- **@types/react** "^18.3.3",
+- **@types/react-dom** "^18.3.0",
+- **@typescript-eslint/eslint-plugin** "^7.13.1",
+- **@typescript-eslint/parser** "^7.13.1",
+- **@vitejs/plugin-react** "^4.3.1",
+- **autoprefixer** "^10.4.19",
+- **daisyui** "^4.12.10",
+- **eslint** "^8.57.0",
+- **eslint-plugin-react-hooks** "^4.6.2",
+- **eslint-plugin-react-refresh** "^0.4.7",
+- **postcss** "^8.4.39",
+- **tailwindcss** "^3.4.4",
+- **typescript** "^5.2.2",
+- **vite** "^5.3.1"
 
 ## Deployment
 
